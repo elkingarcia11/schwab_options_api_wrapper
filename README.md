@@ -1,6 +1,6 @@
-# Schwab Options API Client
+# Schwab Options API Wrapper
 
-A Python client for interacting with the Charles Schwab Options API to fetch option chains, expiration dates, and option symbols for multiple underlying symbols.
+A Python wrapper for interacting with the Charles Schwab Options API to fetch option chains, expiration dates, and option symbols for multiple underlying symbols.
 
 ## Features
 
@@ -44,10 +44,10 @@ pip install -r requirements.txt
 ### Basic Example
 
 ```python
-from schwab_options_api_client import SchwabOptionsApiClient
+from schwab_options_api_wrapper import SchwabOptionsApiWrapper
 
-# Initialize the client
-client = SchwabOptionsApiClient('schwab_access_token.txt')
+# Initialize the wrapper
+client = SchwabOptionsApiWrapper('schwab_access_token.txt')
 
 # Get option symbols for multiple symbols
 # Note: Symbols are paired with DTE values by index
@@ -325,7 +325,7 @@ result = client.get_option_symbols_for_multiple_symbols(symbols, dte, 'ALL', 10,
 
 ## Strike Selection Strategy
 
-The client uses a smart strike selection strategy based on the underlying price. **Both calls and puts get the same set of strikes** (strikes below + strikes above).
+The wrapper uses a smart strike selection strategy based on the underlying price. **Both calls and puts get the same set of strikes** (strikes below + strikes above).
 
 ### Strikes Below Current Price
 
@@ -361,7 +361,7 @@ All methods include error handling and will:
 
 ## Notes
 
-- The client assumes a valid access token is stored in `schwab_access_token.txt`
+- The wrapper assumes a valid access token is stored in `schwab_access_token.txt`
 - API rate limits may apply based on your Schwab API subscription
 - Market data availability depends on market hours and trading sessions
 - Option chains may not be available for all symbols or expiration dates

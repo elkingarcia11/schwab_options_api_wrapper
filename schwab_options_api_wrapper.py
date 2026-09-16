@@ -1,10 +1,10 @@
 import httpx
 from typing import Optional, Dict, List
 
-class SchwabOptionsApiClient:
+class SchwabOptionsApiWrapper:
     def __init__(self, access_token_file_path: str):
         """
-        Initialize the Schwab Options API client with an access token.
+        Initialize the Schwab Options API wrapper with an access token.
         
         Reads the access token from a file and sets up the authorization headers
         needed for all API requests. The token should be a valid Schwab API access token.
@@ -18,7 +18,7 @@ class SchwabOptionsApiClient:
             IOError: If there is an error reading the access token file.
         
         Example:
-            >>> client = SchwabOptionsApiClient('schwab_access_token.txt')
+            >>> client = SchwabOptionsApiWrapper('schwab_access_token.txt')
         """
         with open(access_token_file_path, 'r') as file:
             self.access_token = file.read()
@@ -553,7 +553,7 @@ def main():
     STRIKES_BELOW = 3
     STRIKES_ABOVE = 3
     CONTRACT_TYPE = "ALL"
-    all_option_symbols = SchwabOptionsApiClient(ACCESS_TOKEN_FILE_PATH).get_option_symbols_for_multiple_symbols(SYMBOLS, DAYS_TO_EXPIRATION, CONTRACT_TYPE, STRIKES_BELOW, STRIKES_ABOVE)
+    all_option_symbols = SchwabOptionsApiWrapper(ACCESS_TOKEN_FILE_PATH).get_option_symbols_for_multiple_symbols(SYMBOLS, DAYS_TO_EXPIRATION, CONTRACT_TYPE, STRIKES_BELOW, STRIKES_ABOVE)
     
     # Print formatted results
     print("\n" + "="*80)
